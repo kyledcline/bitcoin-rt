@@ -1,0 +1,31 @@
+<html>
+
+<head>
+
+	<!-- Call external libraries -->
+	<script src="processing-1.4.1.min.js"></script>
+	<script src="prototype.1.7.1.js"></script>
+	<script src="jsmysql.js"></script>
+	<script src="data.js"></script>
+
+	<!-- JavaScript -->
+	<script>
+		window.addEventListener("load", init, false);
+	</script>
+
+	<!-- Call CSS styling -->
+	<link rel="stylesheet" type="text/css" href="default_styling.css">
+
+</head>
+
+<body>
+
+	<!-- Load iframe for data box -->
+	<iframe src="databox.html"></iframe>
+
+	<!-- Load worldmap canvas for processing.js -->
+	<canvas data-processing-sources="worldmaptag.pde" id="worldmapcanvas" resize></canvas>
+
+</body>
+
+</html>

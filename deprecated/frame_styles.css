@@ -1,0 +1,70 @@
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	background-image: url(carbonfiberstretch.jpg);
+	background-size: 100%;
+	overflow: hidden;
+}
+
+
+iframe {
+	position: absolute;	
+	border: 0px;
+	overflow: hidden;
+	background-color: rgba(0,0,0,0.5);
+}
+
+#bannerFrame {
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 7%;
+	border: none;
+	background-color: rgba(0,0,0,0.75);
+}
+
+#mapFrame {
+	top: 8%;
+	left: 1%;
+	width: 70%;
+	height: 60%;
+}
+
+
+#frameExchanges {
+	top: 8%;
+	right: 1%;
+	width: 27%;
+	height: 25%;
+}
+
+#frame2 {
+	top: 35%;
+	right: 1%;
+	width: 27%;
+	height: 30%;
+}
+
+#frame3 {
+	top: 67%;
+	right: 1%;
+	width: 27%;
+	height: 31%;
+}
+
+
+#frameTableTX {
+	top: 70%;
+	left: 1%;
+	width: 25%;
+	height: 28%;
+}
+
+#frameAddlMapData {
+	top: 70%;
+	left: 27%;
+	width: 44%;
+	height: 28%;
+}
+
