@@ -22,6 +22,8 @@ function onOpen(evt) {
 	zero = Date.now() / 1000 |0;
 	webSocketOpen = true;
 
+	document.getElementById('pageStatus').innerHTML = "Connected to Bitcoin network!";
+
 	websocket.send('{"op":"unconfirmed_sub"}');
 	websocket.send('{"op":"blocks_sub"}');
 }
@@ -70,14 +72,14 @@ function toggleDivDisplay(el, elHidden) {
 }
 
 function updateExternalDisplays(tx) {
-	// Increment TX counter and bottom-center TX descriptor
+
 	counterTX++;
 	document.getElementById('pageNumofTX').innerHTML = counterTX;
 	document.title ="Bitcoin-RT [" + counterTX + " tx]";
-	
+
 	var txText = "TX Hash: <b>" + tx.hash.substring(0,15) + "</b><br />Relay IP: <b>" + tx.ipAdd + "</b><br />Location: <b>"
 		 + cleanStringLocation(tx) + "</b><br />Lat, Long: <b>" + tx.latitude + ", " + tx.longitude + "</b>";
-	document.getElementById('elLatestTX').innerHTML = txText;
+	document.getElementById('pageStatus').innerHTML = txText;
 }
 
 function cleanStringLocation(tx) {
