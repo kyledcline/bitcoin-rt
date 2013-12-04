@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $user = "postgres";
-$pass = "X2FuMUe";
+$pass = "";
 $db   = "cddb";
 
 $con = pg_connect("host=$host dbname=$db user=$user password=$pass");
