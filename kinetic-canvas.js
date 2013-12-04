@@ -50,11 +50,11 @@ function TX(ipAdd, confs, hash, timeRelayed) {
 	var tempIPtoStrArray = ipAdd.split(".");
 	var tempIPtoIntArray = tempIPtoStrArray.map(function(x) { return parseInt(x, 10); });
 	var tempIntIpAdd = (16777216*tempIPtoIntArray[0])+(65536*tempIPtoIntArray[1])+(256*tempIPtoIntArray[2])+tempIPtoIntArray[3];
-	jsmysqlSetOption("output_type","json");
-	var jsonLoc = jsmysqlQuery("SELECT l.* FROM blocks b JOIN locations l ON (b.locId = l.locId) WHERE " + tempIntIpAdd + " BETWEEN b.startIp AND b.endIp LIMIT 1;");
+	jspgSetOption("output_type","json");
+	var jsonLoc = jspgQuery("SELECT l.* FROM blocks b JOIN locations l ON (b.locId = l.locId) WHERE " + tempIntIpAdd + " BETWEEN b.startIp AND b.endIp LIMIT 1;");
 	
 	// Let other functions know if errors occur
-	if (!jsonLoc.hasOwnProperty("locId")) this.hasError = true;
+	if (!jsonLoc.hasOwnProperty("locid")) this.hasError = true;
 	
 	// Object TX properties
 	this.ipAdd = ipAdd; // WebSocket
@@ -66,10 +66,10 @@ function TX(ipAdd, confs, hash, timeRelayed) {
 	this.country = jsonLoc.country; // mySQL
 	this.region = jsonLoc.region; // mySQL
 	this.city = jsonLoc.city; // mySQL
-	this.postalCode = jsonLoc.postalCode; // mySQL
-	this.metroCode = jsonLoc.metroCode; // mySQL
-	this.areaCode = jsonLoc.areaCode; // mySQL
-	this.ipName = jsonLoc.ipName; // plaintext name for known IPs, like "Blockchain.info" or "SatoshiDICE" (future dev)
+	this.postalCode = jsonLoc.postalcode; // mySQL
+	this.metroCode = jsonLoc.metrocode; // mySQL
+	this.areaCode = jsonLoc.areacode; // mySQL
+	this.ipName = jsonLoc.ipname; // plaintext name for known IPs, like "Blockchain.info" or "SatoshiDICE" (future dev)
 	this.xpos = mapScreenWidth*(this.longitude-mapGeoLeft)/(mapGeoRight-mapGeoLeft);
 	this.ypos = mapScreenHeight - mapScreenHeight*(this.latitude-mapGeoBottom)/(mapGeoTop-mapGeoBottom);
 	this.continent = jsonLoc.continent; // mySQL (future dev)

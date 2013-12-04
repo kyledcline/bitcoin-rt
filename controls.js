@@ -90,9 +90,6 @@ function cleanStringLocation(tx) {
 	cleanString = ((tx.country == "USA") && (tx.region !== "")) ? cleanString + tx.region + ", " + tx.country : cleanString + tx.country;
 	cleanString = ((tx.ipName == "") || (tx.ipName == "null")) ? cleanString : cleanString + " (" + tx.ipName + ")";
 
-	// debug, delete
-	if (tx.city == "") console.log(tx.ipAdd);
-
 	return cleanString;
 }
 
