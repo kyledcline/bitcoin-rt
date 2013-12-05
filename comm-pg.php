@@ -1,9 +1,9 @@
 <?php
 
-$host = "localhost";
-$user = "postgres";
-$pass = "X2FuMUe";
-$db   = "cddb";
+$host = "ec2-184-73-177-15.compute-1.amazonaws.com";
+$user = "u6v8meri9ef421";
+$pass = "p8v5s7ep53mj3jmkt7qh9pt4o5";
+$db   = "d1im0og2qg9u0n";
 
 $con = pg_connect("host=$host dbname=$db user=$user password=$pass");
 $json = "";
