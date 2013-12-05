@@ -26,6 +26,8 @@ function onOpen(evt) {
 
 	websocket.send('{"op":"unconfirmed_sub"}');
 	websocket.send('{"op":"blocks_sub"}');
+
+	console.log("Websocket opened.");
 }
 
 function onClose(evt){
@@ -33,9 +35,11 @@ function onClose(evt){
 }
 
 function onMessage(evt) {
+	console.log("WS message received: " + evt.data);
 	// Parse JSON string into JSON object
 	var jsonResp = JSON.parse(evt.data);
-	
+	console.log("jsonResp parsed: " + jsonResp.op);
+
 	// Call tx or block function based on response
 	if (jsonResp.op == "utx") manageNewTX(jsonResp);
 }
@@ -49,7 +53,7 @@ function onError(evt) {
 function manageNewTX(jsonResp) {
 	// Instantiate new TX and plot on map after checking for errors
 	var newTX = new TX(jsonResp.x.relayed_by, 0, jsonResp.x.hash, jsonResp.x.time);
-	if (newTX.hasError) return;
+	if (newTX.hasError) console.log("newTX created but has error.");
 	
 	// Map TX on mainCanvas
 	newTX.mapNode();
