@@ -11,11 +11,13 @@ function pg_connection_string() {
  
 # Establish db connection
 $db = pg_connect(pg_connection_string());
+echo "Attempted pg connect.";
 if (!$db) {
-   echo "Database connection error."
+   echo "Database connection error.";
    exit;
 }
  
-$result = pg_query($db, "SELECT l.* FROM blocks b JOIN locations l ON (b.locId = l.locId) WHERE 1535522132 BETWEEN b.startIp AND b.endIp LIMIT 1;");
+echo "Attempting query.";
+$result = pg_query($db, "SELECT l.* FROM blocks b JOIN locations l ON (b.locId = l.locId) WHERE 1535522132 BETWEEN b.startIp AND b.endIp LIMIT 1;") or die("Could not execute query.");
 
 ?>
