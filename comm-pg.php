@@ -5,14 +5,14 @@ $user = "u6v8meri9ef421";
 $pass = "p8v5s7ep53mj3jmkt7qh9pt4o5";
 $db   = "d1im0og2qg9u0n";
 
-$con = pg_connect("host=$host port=5492 dbname=$db user=$user password=$pass sslmode=require") or die("Cannot access db $db\n");
+$con = pg_connect("host=$host port=5492 dbname=$db user=$user password=$pass sslmode=require");
 $json = "";
 
 #$rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
 
 if (isset($_GET['pgsql'])) {
 	$pg_query = rawurldecode($_GET['pgsql']);
-	$rs = pg_query($con, stripslashes($pg_query)) or die("Cannot execute query: $query\n");
+	$rs = pg_query($con, stripslashes($pg_query));
 	if ($rs != false and @pg_num_rows($rs) > 0) {
 		$pg_num_rows = pg_num_rows($rs);
 		#json .= "[";
@@ -24,6 +24,7 @@ if (isset($_GET['pgsql'])) {
 			}
 			$json = substr($json, 0, -1);
 			$json .= "}";
+			echo ($json);
 			if ($i < $pg_num_rows - 1) {
 				$json .= ", ";
 			}
