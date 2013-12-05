@@ -5,7 +5,7 @@ $user = "u6v8meri9ef421";
 $pass = "p8v5s7ep53mj3jmkt7qh9pt4o5";
 $db   = "d1im0og2qg9u0n";
 
-$con = pg_connect("host=$host dbname=$db user=$user password=$pass");
+$con = pg_connect("host=$host port=5492 dbname=$db user=$user password=$pass sslmode=require");
 $json = "";
 
 #$rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
