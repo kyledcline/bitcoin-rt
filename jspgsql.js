@@ -8,13 +8,16 @@ var jspgOption = {
 
 function jspgQuery(pg_query)
 {
+    console.log("jspgQuery started.");
     new Ajax.Request( ajax_path,    {
         method:         'get',
         asynchronous:   jspgOption['asynchronous'],
         parameters: { pgsql: pg_query },
         onSuccess:  function(transport) {
-            if (jspgOption["output_type"] == "json")
-                ajax_out = transport.responseText.evalJSON();
+            if (jspgOption["output_type"] == "json") {
+                console.log("transport.responseText: "+transport.responseText);
+                ajax_out = transport.responseText.evalJSON(true);
+            }
             else if (jspgOption["output_type"] == "text")
                 ajax_out = transport.responseText;
             return ajax_out;
