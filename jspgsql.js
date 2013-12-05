@@ -2,7 +2,7 @@ var ajax_path = "comm-pg.php";
 var ajax_out  = "";
 var jspgOption = {
 	output_type : "text",
-	asynchronous : true,
+	asynchronous : false,
 	max_records : 2000000
 }
 
