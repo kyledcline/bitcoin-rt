@@ -16,7 +16,8 @@ function jspgQuery(pg_query)
         onSuccess:  function(transport) {
             if (jspgOption["output_type"] == "json") {
                 console.log("transport.responseText: "+transport.responseText);
-                ajax_out = transport.responseText.evalJSON();
+                ajax_out = transport.responseText.substr(0, transport.responseText.length/2);
+                avax_out = ajax_out.evalJSON();
                 console.log("evalJSON complete");
                 manageNewTX(ajax_out);
             }
