@@ -67,7 +67,7 @@ function handleOP(jsonObj) {
 }
 
 function manageNewTX(ajaxResp) {
-	console.log("manageNewTX started")
+	console.log("manageNewTX started");
 	// Instantiate new TX and plot on map after checking for errors
 	var newTX = new TX(ajaxResp);
 	if (newTX.hasError) console.log("newTX created but has error.");
