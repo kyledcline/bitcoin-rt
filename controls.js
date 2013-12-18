@@ -57,7 +57,8 @@ function handleOP(jsonObj) {
 	var tempIntIpAdd = (16777216*tempIPtoIntArray[0])+(65536*tempIPtoIntArray[1])+(256*tempIPtoIntArray[2])+tempIPtoIntArray[3];
 	console.log("tempIntIpAdd: " + tempIntIpAdd);
 	jspgSetOption("output_type","json");
-	var jsonLoc = jspgQuery("SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid::text = l.locid_del) WHERE " + tempIntIpAdd + " BETWEEN b.startip AND b.endip LIMIT 1;");
+	
+	jspgQuery("SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid::text = l.locid_del) WHERE " + tempIntIpAdd + " BETWEEN b.startip AND b.endip LIMIT 1;");
 	
 	// Let other functions know if errors occur
 	// if (!jsonLoc.hasOwnProperty("locid_del")) doWhat?
