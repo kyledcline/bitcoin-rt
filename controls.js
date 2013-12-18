@@ -61,14 +61,13 @@ function handleOP(jsonObj) {
 	
 	// Let other functions know if errors occur
 	// if (!jsonLoc.hasOwnProperty("locid_del")) doWhat?
-	
-	console.log("locid: "+jsonObj.locid_del);
 
 	// manageNewTX() will be called from jspgsql.js
 
 }
 
 function manageNewTX(ajaxResp) {
+	console.log("manageNewTX started")
 	// Instantiate new TX and plot on map after checking for errors
 	var newTX = new TX(ajaxResp);
 	if (newTX.hasError) console.log("newTX created but has error.");

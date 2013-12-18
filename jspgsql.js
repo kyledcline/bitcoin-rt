@@ -17,10 +17,11 @@ function jspgQuery(pg_query)
             if (jspgOption["output_type"] == "json") {
                 console.log("transport.responseText: "+transport.responseText);
                 ajax_out = transport.responseText.evalJSON();
+                manageNewTX(ajax_out);
             }
-            else if (jspgOption["output_type"] == "text")
+            else if (jspgOption["output_type"] == "text") {
                 ajax_out = transport.responseText;
-            manageNewTX(ajax_out);
+            }
         }
     });
 }
