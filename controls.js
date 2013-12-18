@@ -26,8 +26,6 @@ function onOpen(evt) {
 
 	websocket.send('{"op":"unconfirmed_sub"}');
 	websocket.send('{"op":"blocks_sub"}');
-
-	console.log("Websocket opened.");
 }
 
 function onClose(evt){
@@ -35,10 +33,8 @@ function onClose(evt){
 }
 
 function onMessage(evt) {
-	console.log("WS message received: " + evt.data);
 	// Parse JSON string into JSON object
 	var jsonResp = JSON.parse(evt.data);
-	console.log("jsonResp parsed: " + jsonResp.op);
 
 	// Call tx or block function based on response
 	if (jsonResp.op == "utx") handleOP(jsonResp);
@@ -55,7 +51,6 @@ function handleOP(jsonObj) {
 	var tempIPtoStrArray = jsonObj.x.relayed_by.split(".");
 	var tempIPtoIntArray = tempIPtoStrArray.map(function(x) { return parseInt(x, 10); });
 	var tempIntIpAdd = (16777216*tempIPtoIntArray[0])+(65536*tempIPtoIntArray[1])+(256*tempIPtoIntArray[2])+tempIPtoIntArray[3];
-	console.log("tempIntIpAdd: " + tempIntIpAdd);
 	jspgSetOption("output_type","json");
 	
 	jspgQuery("SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid::text = l.locid_del) WHERE " + tempIntIpAdd + " BETWEEN b.startip AND b.endip LIMIT 1;");
@@ -68,10 +63,9 @@ function handleOP(jsonObj) {
 }
 
 function manageNewTX(ajaxResp) {
-	console.log("manageNewTX started");
 	// Instantiate new TX and plot on map after checking for errors
 	var newTX = new TX(ajaxResp);
-	if (newTX.hasError) console.log("newTX created but has error.");
+	if (newTX.hasError) return;
 	
 	// Map TX on mainCanvas
 	newTX.mapNode();

@@ -14,11 +14,9 @@ function jspgQuery(pg_query)
         asynchronous:   jspgOption['asynchronous'],
         parameters: { pgsql: pg_query },
         onSuccess:  function(transport) {
-            if (jspgOption["output_type"] == "json") {
+            if ((jspgOption["output_type"] == "json") && (transport.responseText.length > 0)) {
                 ajax_out = transport.responseText.substr(0, transport.responseText.length/2);
-                console.log("transport.responseText: "+ajax_out);
                 ajax_out = ajax_out.evalJSON();
-                console.log("evalJSON complete");
                 manageNewTX(ajax_out);
             }
             else if (jspgOption["output_type"] == "text") {

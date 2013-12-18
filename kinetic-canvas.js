@@ -46,22 +46,19 @@ function TX(jsonLoc) {
 
 	this.hasError = false;
 
-	// ???
-
 	// Object TX properties
-	this.longitude = jsonLoc.longitude; // mySQL
-	console.log(this.longitude);
-	this.latitude = jsonLoc.latitude; // mySQL
-	this.country = jsonLoc.country; // mySQL
-	this.region = jsonLoc.region; // mySQL
-	this.city = jsonLoc.city; // mySQL
-	this.postalCode = jsonLoc.postalcode; // mySQL
-	this.metroCode = jsonLoc.metrocode; // mySQL
-	this.areaCode = jsonLoc.areacode; // mySQL
+	this.longitude = jsonLoc.longitude; // postgreSQL
+	this.latitude = jsonLoc.latitude; // postgreSQL
+	this.country = jsonLoc.country; // postgreSQL
+	this.region = jsonLoc.region; // postgreSQL
+	this.city = jsonLoc.city; // postgreSQL
+	this.postalCode = jsonLoc.postalcode; // postgreSQL
+	this.metroCode = jsonLoc.metrocode; // postgreSQL
+	this.areaCode = jsonLoc.areacode; // postgreSQL
 	this.ipName = jsonLoc.ipname; // plaintext name for known IPs, like "Blockchain.info" or "SatoshiDICE" (future dev)
 	this.xpos = mapScreenWidth*(this.longitude-mapGeoLeft)/(mapGeoRight-mapGeoLeft);
 	this.ypos = mapScreenHeight - mapScreenHeight*(this.latitude-mapGeoBottom)/(mapGeoTop-mapGeoBottom);
-	this.continent = jsonLoc.continent; // mySQL (future dev)
+	this.continent = jsonLoc.continent; // postgreSQL (future dev)
 	
 	// Object TX Methods
 
