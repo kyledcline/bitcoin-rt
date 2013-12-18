@@ -46,7 +46,7 @@ function TX(ipAdd, confs, hash, timeRelayed) {
 
 	this.hasError = false;
 
-	// Parse ipAdd into integer representation and query mySQL CDDB for location info
+	// Parse ipAdd into integer representation and query postgreSQL CDDB for location info
 	var tempIPtoStrArray = ipAdd.split(".");
 	var tempIPtoIntArray = tempIPtoStrArray.map(function(x) { return parseInt(x, 10); });
 	var tempIntIpAdd = (16777216*tempIPtoIntArray[0])+(65536*tempIPtoIntArray[1])+(256*tempIPtoIntArray[2])+tempIPtoIntArray[3];
