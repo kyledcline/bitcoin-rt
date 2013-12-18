@@ -41,7 +41,7 @@ function onMessage(evt) {
 	console.log("jsonResp parsed: " + jsonResp.op);
 
 	// Call tx or block function based on response
-	if (jsonResp.op == "utx") manageNewTX(jsonResp);
+	if (jsonResp.op == "utx") handleOP(jsonResp);
 }
 
 function onError(evt) {
@@ -50,9 +50,27 @@ function onError(evt) {
 
 // *** TIER II FUNCTIONS *** //
 
-function manageNewTX(jsonResp) {
+function handleOP(jsonObj) {
+	// Parse ipAdd into integer representation and query postgreSQL CDDB for location info
+	var tempIPtoStrArray = jsonObj.x.relayed_by.split(".");
+	var tempIPtoIntArray = tempIPtoStrArray.map(function(x) { return parseInt(x, 10); });
+	var tempIntIpAdd = (16777216*tempIPtoIntArray[0])+(65536*tempIPtoIntArray[1])+(256*tempIPtoIntArray[2])+tempIPtoIntArray[3];
+	console.log("tempIntIpAdd: " + tempIntIpAdd);
+	jspgSetOption("output_type","json");
+	var jsonLoc = jspgQuery("SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid::text = l.locid_del) WHERE " + tempIntIpAdd + " BETWEEN b.startip AND b.endip LIMIT 1;");
+	
+	// Let other functions know if errors occur
+	// if (!jsonLoc.hasOwnProperty("locid_del")) doWhat?
+	
+	console.log("locid: "+jsonLoc.locid_del);
+
+	// manageNewTX() will be called from jspgsql.js
+
+}
+
+function manageNewTX(ajaxResp) {
 	// Instantiate new TX and plot on map after checking for errors
-	var newTX = new TX(jsonResp.x.relayed_by, 0, jsonResp.x.hash, jsonResp.x.time);
+	var newTX = new TX(ajaxResp);
 	if (newTX.hasError) console.log("newTX created but has error.");
 	
 	// Map TX on mainCanvas

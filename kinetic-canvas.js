@@ -41,29 +41,14 @@ function initCanvas() {
 
 // *** OBJECT CONSTRUCTOR *** //
 
-function TX(ipAdd, confs, hash, timeRelayed) {
+function TX(jsonLoc) {
 	// Object TX Constructor
 
 	this.hasError = false;
 
-	// Parse ipAdd into integer representation and query postgreSQL CDDB for location info
-	var tempIPtoStrArray = ipAdd.split(".");
-	var tempIPtoIntArray = tempIPtoStrArray.map(function(x) { return parseInt(x, 10); });
-	var tempIntIpAdd = (16777216*tempIPtoIntArray[0])+(65536*tempIPtoIntArray[1])+(256*tempIPtoIntArray[2])+tempIPtoIntArray[3];
-	console.log("tempIntIpAdd: " + tempIntIpAdd);
-	jspgSetOption("output_type","json");
-	var jsonLoc = jspgQuery("SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid::text = l.locid_del) WHERE " + tempIntIpAdd + " BETWEEN b.startip AND b.endip LIMIT 1;");
-	
-	// Let other functions know if errors occur
-	if (!jsonLoc.hasOwnProperty("locid_del")) this.hasError = true;
-	
-	console.log("locid: "+jsonLoc.locid_del);
+	// ???
 
 	// Object TX properties
-	this.ipAdd = ipAdd; // WebSocket
-	this.confs = confs; // WebSocket
-	this.hash = hash; // WebSocket
-	this.timeRelayed = timeRelayed; // WebSocket
 	this.longitude = jsonLoc.longitude; // mySQL
 	this.latitude = jsonLoc.latitude; // mySQL
 	this.country = jsonLoc.country; // mySQL

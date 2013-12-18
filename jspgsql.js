@@ -1,8 +1,8 @@
 var ajax_path = "comm-pg.php";
 var ajax_out  = "";
 var jspgOption = {
-	output_type : "text",
-	asynchronous : false,
+	output_type : "json",
+	asynchronous : true,
 	max_records : 2000000
 }
 
@@ -20,10 +20,9 @@ function jspgQuery(pg_query)
             }
             else if (jspgOption["output_type"] == "text")
                 ajax_out = transport.responseText;
-            return ajax_out;
+            manageNewTX(ajax_out);
         }
     });
-    return ajax_out;
 }
 
 function jspgSetOption(key, val) {
