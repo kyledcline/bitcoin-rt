@@ -55,9 +55,9 @@ function TX(ipAdd, confs, hash, timeRelayed) {
 	var jsonLoc = jspgQuery("SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid::text = l.locid_del) WHERE " + tempIntIpAdd + " BETWEEN b.startip AND b.endip LIMIT 1;");
 	
 	// Let other functions know if errors occur
-	if (!jsonLoc.hasOwnProperty("locid")) this.hasError = true;
+	if (!jsonLoc.hasOwnProperty("locid_del")) this.hasError = true;
 	
-	console.log("locid: "+jsonLoc.locid);
+	console.log("locid: "+jsonLoc.locid_del);
 
 	// Object TX properties
 	this.ipAdd = ipAdd; // WebSocket
