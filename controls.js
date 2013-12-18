@@ -62,7 +62,7 @@ function handleOP(jsonObj) {
 	// Let other functions know if errors occur
 	// if (!jsonLoc.hasOwnProperty("locid_del")) doWhat?
 	
-	console.log("locid: "+jsonLoc.locid_del);
+	console.log("locid: "+jsonObj.locid_del);
 
 	// manageNewTX() will be called from jspgsql.js
 

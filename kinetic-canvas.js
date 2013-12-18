@@ -50,6 +50,7 @@ function TX(jsonLoc) {
 
 	// Object TX properties
 	this.longitude = jsonLoc.longitude; // mySQL
+	console.log(this.longitude);
 	this.latitude = jsonLoc.latitude; // mySQL
 	this.country = jsonLoc.country; // mySQL
 	this.region = jsonLoc.region; // mySQL
