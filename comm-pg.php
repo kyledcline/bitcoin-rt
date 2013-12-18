@@ -24,6 +24,7 @@ if (isset($_GET['pgsql'])) {
 			}
 			$json = substr($json, 0, -1);
 			$json .= "}";
+			// I think this line is the offender - delete and push - let's see what happens?!
 			echo (	$json);
 			if ($i < $pg_num_rows - 1) {
 				$json .= ", ";

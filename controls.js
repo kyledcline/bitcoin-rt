@@ -88,10 +88,10 @@ function toggleDivDisplay(el, elHidden) {
 }
 
 function updateExternalDisplays(tx) {
-
+	console.log("updateExternalDisplays() started");
 	counterTX++;
 	document.getElementById('pageNumofTX').innerHTML = counterTX;
-	document.title ="Bitcoin-RT [" + counterTX + " tx]";
+	document.title = "Bitcoin-RT [" + counterTX + " tx]";
 
 	var txText = "TX Hash: <b>" + tx.hash.substring(0,15) + "</b><br />Relay IP: <b>" + tx.ipAdd + "</b><br />Location: <b>"
 		 + cleanStringLocation(tx) + "</b><br />Lat, Long: <b>" + tx.latitude + ", " + tx.longitude + "</b>";

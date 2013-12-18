@@ -8,7 +8,6 @@ var jspgOption = {
 
 function jspgQuery(pg_query)
 {
-    console.log("jspgQuery started.");
     new Ajax.Request( ajax_path,    {
         method:         'get',
         asynchronous:   jspgOption['asynchronous'],
