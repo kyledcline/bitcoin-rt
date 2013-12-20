@@ -143,7 +143,11 @@ function TX(jsonLoc, wsData) {
 			fill: 'white',
 			opacity: 1,
 			fontSize: 10,
-			fontFamily: 'Droid Sans Mono'
+			fontFamily: 'Droid Sans Mono',
+			shadowColor: 'black',
+			shadowBlur: 2,
+			shadowOffset: [1, 1],
+			shadowOpacity: 0.2
 		});
 
 		// Fix sideLine offsets to account for text bleeding off of page (anywhere eastward of Japan)
