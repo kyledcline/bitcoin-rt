@@ -35,18 +35,18 @@ function initCanvas() {
 	}
 	imageObj.src = 'images/worldmap_bg.png';
 
-	// initLogo();
+	initLogo();
 
 	initWebSocket();
 }
 
 function initLogo() {
 	var logoText = "Bitcoin-RT";
-	var subtitleText = "Watch bitcoin transactions relayed across the globe in realtime"
+	var subtitleText = "Watch bitcoin transactions relayed across the globe in realtime";
 
 	var logoObj = new Kinetic.Text({
 		text: logoText,
-		x: -300px,
+		x: -300,
 		y: stage.getHeight() / 2,
 		fill: 'white',
 		fontSize: 64,
@@ -54,6 +54,16 @@ function initLogo() {
 		opacity: 1
 	});
 
+	layer2.add(logoObj);
+	stage.add(layer2);
+
+	var easeInLogo = new Kinetic.Tween({
+		node: logoObj,
+		duration: 3,
+		x: stage.getWidth() / 2
+	});
+
+	easeInLogo.play();
 }
 
 // *** OBJECT CONSTRUCTOR *** //
