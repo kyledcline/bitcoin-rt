@@ -122,7 +122,7 @@ function TX(jsonLoc, wsData) {
 				points: [this.xpos, this.ypos, this.xpos+cartX[i], this.ypos+cartY[i]],
 				stroke: 'white',
 				strokeWidth: 1,
-				opacity: 0.05
+				opacity: 0.1
 			});
 
 			layer1.add(heatLines[i]);
