@@ -47,10 +47,8 @@ function TX(jsonLoc, wsData) {
 	this.hasError = false;
 
 	// Object TX properties
-	this.ipAddress = wsData.relayed_by; // WebSocket
-	console.log(this.ipAddress);
-	this.hash = wsData.hash; // WebSocket
-	console.log(this.hash);
+	this.ipAddress = wsData.x.relayed_by; // WebSocket
+	this.hash = wsData.x.hash; // WebSocket
 	this.longitude = jsonLoc.longitude; // postgreSQL
 	this.latitude = jsonLoc.latitude; // postgreSQL
 	this.country = jsonLoc.country; // postgreSQL
