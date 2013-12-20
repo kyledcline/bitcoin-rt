@@ -1,5 +1,5 @@
 // *** GLOBAL VARIABLE DECLARATION *** //
-var stage, layer0, layer1;
+var stage, layer0, layer1, layer2;
 var mapGeoLeft   = -180.0000;
 var mapGeoRight  =  180.0000;
 var mapGeoTop    =   90.0000;
@@ -17,8 +17,9 @@ function initCanvas() {
 		height: mapScreenWidth
 	});
 
-	layer0 = new Kinetic.Layer();
-	layer1 = new Kinetic.Layer();
+	layer0 = new Kinetic.Layer(); // background
+	layer1 = new Kinetic.Layer(); // tx
+	layer2 = new Kinetic.Layer(); // logo
 
 	var imageObj = new Image();
 	imageObj.onload = function() {
@@ -34,9 +35,25 @@ function initCanvas() {
 	}
 	imageObj.src = 'images/worldmap_bg.png';
 
-	// initHeader();
+	// initLogo();
 
 	initWebSocket();
+}
+
+function initLogo() {
+	var logoText = "Bitcoin-RT";
+	var subtitleText = "Watch bitcoin transactions relayed across the globe in realtime"
+
+	var logoObj = new Kinetic.Text({
+		text: logoText,
+		x: -300px,
+		y: stage.getHeight() / 2,
+		fill: 'white',
+		fontSize: 64,
+		fontFamily: 'Share Tech Mono',
+		opacity: 1
+	});
+
 }
 
 // *** OBJECT CONSTRUCTOR *** //
