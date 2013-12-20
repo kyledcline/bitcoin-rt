@@ -37,6 +37,8 @@ function initCanvas() {
 
 	initLogo();
 
+	debugLogo();
+
 	initWebSocket();
 }
 
@@ -46,8 +48,8 @@ function initLogo() {
 
 	var logoObj = new Kinetic.Text({
 		text: logoText,
-		x: -300,
-		y: stage.getHeight() / 2,
+		x: 0,
+		y: 0,
 		fill: 'white',
 		fontSize: 64,
 		fontFamily: 'Share Tech Mono',
@@ -57,13 +59,22 @@ function initLogo() {
 	layer2.add(logoObj);
 	stage.add(layer2);
 
-	var easeInLogo = new Kinetic.Tween({
-		node: logoObj,
-		duration: 3,
-		x: stage.getWidth() / 2
-	});
+	// var easeInLogo = new Kinetic.Tween({
+	// 	node: logoObj,
+	// 	duration: 3,
+	// 	x: stage.getWidth() / 2
+	// });
 
-	easeInLogo.play();
+	//easeInLogo.play();
+}
+
+function debugLogo() {
+
+	layer2.getChildren().each(function(shape) {
+		console.log(shape.getOpacity());
+		console.log(shape.getAbsoluteZIndex());
+		console.log(shape.isVisible());
+	});
 }
 
 // *** OBJECT CONSTRUCTOR *** //
