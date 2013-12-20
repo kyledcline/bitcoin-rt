@@ -6,7 +6,7 @@ var jspgOption = {
 	max_records : 2000000
 }
 
-function jspgQuery(pg_query)
+function jspgQuery(pg_query, wsData)
 {
     new Ajax.Request( ajax_path,    {
         method:         'get',
@@ -16,7 +16,7 @@ function jspgQuery(pg_query)
             if ((jspgOption["output_type"] == "json") && (transport.responseText.length > 0)) {
                 ajax_out = transport.responseText.substr(0, transport.responseText.length/2);
                 ajax_out = ajax_out.evalJSON();
-                manageNewTX(ajax_out);
+                manageNewTX(ajax_out, wsData);
             }
             else if (jspgOption["output_type"] == "text") {
                 ajax_out = transport.responseText;

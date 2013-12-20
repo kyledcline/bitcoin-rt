@@ -41,12 +41,14 @@ function initCanvas() {
 
 // *** OBJECT CONSTRUCTOR *** //
 
-function TX(jsonLoc) {
+function TX(jsonLoc, wsData) {
 	// Object TX Constructor
 
 	this.hasError = false;
 
 	// Object TX properties
+	this.ipAddress = wsData.relayed_by; // WebSocket
+	this.hash = wsData.hash; // WebSocket
 	this.longitude = jsonLoc.longitude; // postgreSQL
 	this.latitude = jsonLoc.latitude; // postgreSQL
 	this.country = jsonLoc.country; // postgreSQL

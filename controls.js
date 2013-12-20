@@ -34,10 +34,10 @@ function onClose(evt){
 
 function onMessage(evt) {
 	// Parse JSON string into JSON object
-	var jsonResp = JSON.parse(evt.data);
+	var wsData = JSON.parse(evt.data);
 
 	// Call tx or block function based on response
-	if (jsonResp.op == "utx") handleOP(jsonResp);
+	if (wsData.op == "utx") handleOP(wsData);
 }
 
 function onError(evt) {
@@ -46,14 +46,14 @@ function onError(evt) {
 
 // *** TIER II FUNCTIONS *** //
 
-function handleOP(jsonObj) {
+function handleOP(wsData) {
 	// Parse ipAdd into integer representation and query postgreSQL CDDB for location info
-	var tempIPtoStrArray = jsonObj.x.relayed_by.split(".");
+	var tempIPtoStrArray = wsData.x.relayed_by.split(".");
 	var tempIPtoIntArray = tempIPtoStrArray.map(function(x) { return parseInt(x, 10); });
 	var tempIntIpAdd = (16777216*tempIPtoIntArray[0])+(65536*tempIPtoIntArray[1])+(256*tempIPtoIntArray[2])+tempIPtoIntArray[3];
 	jspgSetOption("output_type","json");
 	
-	jspgQuery("SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid::text = l.locid_del) WHERE " + tempIntIpAdd + " BETWEEN b.startip AND b.endip LIMIT 1;");
+	jspgQuery("SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid::text = l.locid_del) WHERE " + tempIntIpAdd + " BETWEEN b.startip AND b.endip LIMIT 1;", wsData);
 	
 	// Let other functions know if errors occur
 	// if (!jsonLoc.hasOwnProperty("locid_del")) doWhat?
@@ -62,9 +62,9 @@ function handleOP(jsonObj) {
 
 }
 
-function manageNewTX(ajaxResp) {
+function manageNewTX(ajaxResp, wsData) {
 	// Instantiate new TX and plot on map after checking for errors
-	var newTX = new TX(ajaxResp);
+	var newTX = new TX(ajaxResp, wsData);
 	if (newTX.hasError) return;
 	
 	// Map TX on mainCanvas
@@ -90,10 +90,11 @@ function toggleDivDisplay(el, elHidden) {
 function updateExternalDisplays(tx) {
 	console.log("updateExternalDisplays() started");
 	counterTX++;
+	console.log(counterTX);
 	document.getElementById('pageNumofTX').innerHTML = counterTX;
 	document.title = "Bitcoin-RT [" + counterTX + " tx]";
 
-	var txText = "TX Hash: <b>" + tx.hash.substring(0,15) + "</b><br />Relay IP: <b>" + tx.ipAdd + "</b><br />Location: <b>"
+	var txText = "TX Hash: <b>" + tx.hash.substring(0,15) + "</b><br />Relay IP: <b>" + tx.ipAddress + "</b><br />Location: <b>"
 		 + cleanStringLocation(tx) + "</b><br />Lat, Long: <b>" + tx.latitude + ", " + tx.longitude + "</b>";
 	document.getElementById('pageStatus').innerHTML = txText;
 }
