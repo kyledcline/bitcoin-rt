@@ -129,3 +129,48 @@ function updateClock() {
 	cleanTime = timeHr + ":" + timeMin + ":" + timeSec;
 	document.getElementById('pageClock').innerHTML = cleanTime;
 }
+
+function initCharts() {
+	var options = {
+		segmentStrokeColor: "rgba(0,0,0,0)",
+		animation: true,
+		animationEasing: "easeInOutSine",
+		animateScale: true
+	};
+	var data = [
+		{
+			// NA
+			value: 22,
+			color: "rgba(255,255,255,0.5)"
+		},
+		{
+			// SA
+			value: 7,
+			color: "rgba(204,204,204,0.5)"
+		},
+		{
+			// EU
+			value: 30,
+			color: "rgba(153,153,153,0.5)"
+		},
+		{
+			// AF
+			value: 3,
+			color: "rgba(102,102,102,0.5)" 
+		},
+		{
+			// AS
+			value: 10,
+			color: "rgba(51,51,51,0.5)"
+		},
+		{
+			// OC
+			value: 5,
+			color: "rgba(5,5,5,0.5)"
+		}
+	];
+	var chartCanvas = document.getElementById('continentsChart').getContext('2d');
+	var continentsChart = new Chart(chartCanvas).Pie(data, options);
+
+
+}

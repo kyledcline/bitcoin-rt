@@ -63,7 +63,7 @@ blockquote {
 #chartDiv {
 	top: 50%;
 	left: 5%;
-	right: 70%;
+	min-width: 300px;
 	padding: 5px;
 }
 
