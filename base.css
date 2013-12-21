@@ -60,6 +60,18 @@ blockquote {
 	padding: 0;
 }
 
+#chartDiv {
+	top: 50%;
+	left: 5%;
+	min-width: 300px;
+	padding: 5px;
+}
+
+#continentsChart {
+	width: 100%;
+	height: 100%;
+}
+
 #headerTopRight {
 	top: 0;
 	right: 0;
