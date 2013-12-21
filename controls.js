@@ -132,7 +132,7 @@ function updateClock() {
 	cleanTime = timeHr + ":" + timeMin + ":" + timeSec;
 	document.getElementById('pageClock').innerHTML = cleanTime;
 
-	handleCharts();
+	// handleCharts();
 }
 
 function handleCharts() {
