@@ -38,7 +38,7 @@ function initCanvas() {
 
 	initWebSocket();
 
-	initCharts();
+	handleCharts();
 }
 
 // *** OBJECT CONSTRUCTOR *** //
