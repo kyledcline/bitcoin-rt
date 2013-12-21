@@ -6,7 +6,7 @@ var zero, time, timeHr, timeMin, timeSec, cleanTime;
 var qInfoHidden = true;
 var donateQRHidden = true;
 var webSocketOpen = false;
-var continentsData = { NA: 0, SA: 0, EU: 0, AF: 0, AS: 0, OC: 0 };
+var continentsData = { NA: 1, SA: 2, EU: 3, AF: 4, AS: 2, OC: 1 };
 
 // *** WEBSOCKET FUNCTIONS *** //
 
@@ -144,27 +144,27 @@ function handleCharts() {
 	var data = [
 		{
 			value: continentsData.NA,
-			color: "rgba(255,255,255,0.5)"
+			color: "rgba(255,255,255,0.25)"
 		},
 		{
 			value: continentsData.SA,
-			color: "rgba(204,204,204,0.5)"
+			color: "rgba(204,204,204,0.25)"
 		},
 		{
 			value: continentsData.EU,
-			color: "rgba(153,153,153,0.5)"
+			color: "rgba(153,153,153,0.25)"
 		},
 		{
 			value: continentsData.AF,
-			color: "rgba(102,102,102,0.5)"
+			color: "rgba(102,102,102,0.25)"
 		},
 		{
 			value: continentsData.AS,
-			color: "rgba(51,51,51,0.5)"
+			color: "rgba(51,51,51,0.25)"
 		},
 		{
 			value: continentsData.OC,
-			color: "rgba(5,5,5,0.5)"
+			color: "rgba(5,5,5,0.25)"
 		}
 	];
 	var chartCanvas = document.getElementById('continentsChart').getContext('2d');
