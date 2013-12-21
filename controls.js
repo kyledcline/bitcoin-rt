@@ -6,7 +6,6 @@ var zero, time, timeHr, timeMin, timeSec, cleanTime;
 var qInfoHidden = true;
 var donateQRHidden = true;
 var webSocketOpen = false;
-var chartFirstCall = true;
 var continentsData = { NA: 0, SA: 0, EU: 0, AF: 0, AS: 0, OC: 0 };
 
 // *** WEBSOCKET FUNCTIONS *** //
@@ -137,20 +136,10 @@ function updateClock() {
 }
 
 function initCharts() {
-	var options = {};
-	if (chartFirstCall == true) {
-		options = {
-			segmentStrokeColor: "rgba(0,0,0,0)",
-			animation: true,
-			animationEasing: "easeInOutSine",
-			animateScale: true
-		};
-	} else {
-		options = {
+	var options = {
 			segmentStrokeColor: "rgba(0,0,0,0)",
 			animation: false
 		};
-	}
 	
 	var data = [
 		{
