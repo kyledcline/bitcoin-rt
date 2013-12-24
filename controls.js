@@ -29,7 +29,7 @@ function onOpen(evt) {
 	websocket.send('{"op":"blocks_sub"}');
 }
 
-function onClose(evt){
+function onClose(evt) {
 	initWebSocket(); // Reinitialize WebSocket
 }
 
