@@ -35,9 +35,8 @@ function initCanvas() {
 	}
 	imageObj.src = 'images/worldmap_bg.png';
 
-	initLogo();
-
-	debugLogo();
+	var logo = new otherShape();
+	logo.logoDisplay();
 
 	initWebSocket();
 }
@@ -199,5 +198,26 @@ function TX(jsonLoc) {
 		});
 
 		fadeOutObj.play();
+	}
+}
+
+function otherShape() {
+
+	this.logoDisplay = function() {
+		var logoText = "Bitcoin-RT";
+		var subtitleText = "Watch bitcoin transactions relayed across the globe in realtime";
+
+		var logoObj = new Kinetic.Text({
+			text: logoText,
+			x: 0,
+			y: 0,
+			fill: 'white',
+			fontSize: 64,
+			fontFamily: 'Share Tech Mono',
+			opacity: 1
+		});
+
+		layer2.add(logoObj);
+		stage.add(layer2);
 	}
 }
