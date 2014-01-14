@@ -35,9 +35,6 @@ function initCanvas() {
 	}
 	imageObj.src = 'images/worldmap_bg.png';
 
-	// var logo = new otherShape();
-	// logo.logoDisplay();
-
 	initWebSocket();
 
 	// handleCharts();
@@ -69,7 +66,7 @@ function initLogo() {
 
 	var fadeLogo = new Kinetic.Tween({
 		node: logoObj,
-		duration: 8,
+		duration: 7,
 		opacity: 0
 	});
 
@@ -96,7 +93,7 @@ function initLogo() {
 
 	var fadeLogoSub = new Kinetic.Tween({
 		node: logoSubObj,
-		duration: 8,
+		duration: 7,
 		opacity: 0
 	});
 
@@ -244,26 +241,5 @@ function TX(jsonLoc, wsData) {
 		});
 
 		fadeOutObj.play();
-	}
-}
-
-function otherShape() {
-
-	this.logoDisplay = function() {
-		var logoText = "Bitcoin-RT";
-		var subtitleText = "Watch bitcoin transactions relayed across the globe in realtime";
-
-		var logoObj = new Kinetic.Text({
-			text: logoText,
-			x: 0,
-			y: 0,
-			fill: 'white',
-			fontSize: 64,
-			fontFamily: 'Changa One',
-			opacity: 1
-		});
-
-		layer2.add(logoObj);
-		stage.add(layer2);
 	}
 }
