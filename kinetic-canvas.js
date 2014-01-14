@@ -1,5 +1,5 @@
 // *** GLOBAL VARIABLE DECLARATION *** //
-var stage, layer0, layer1, layer2;
+var stage, layer0, layer1, layer2, layer3, layer4;
 var mapGeoLeft   = -180.0000;
 var mapGeoRight  =  180.0000;
 var mapGeoTop    =   90.0000;
@@ -18,8 +18,10 @@ function initCanvas() {
 	});
 
 	layer0 = new Kinetic.Layer(); // background
-	layer1 = new Kinetic.Layer(); // tx
-	layer2 = new Kinetic.Layer(); // logo
+	layer1 = new Kinetic.Layer(); // nodes, heatnets
+	layer2 = new Kinetic.Layer(); // ripples
+	layer3 = new Kinetic.Layer(); // sidelines
+	layer4 = new Kinetic.Layer(); // top-layer (logos)
 
 	var imageObj = new Image();
 	imageObj.onload = function() {
@@ -54,7 +56,7 @@ function initLogo() {
 		fontFamily: 'Changa One',
 		opacity: 1
 	});
-	layer2.add(logoObj);
+	layer4.add(logoObj);
 
 	var easeInLogo = new Kinetic.Tween({
 		node: logoObj,
@@ -81,7 +83,7 @@ function initLogo() {
 		fontStyle: 'italic',
 		opacity: 1
 	});
-	layer2.add(logoSubObj);
+	layer4.add(logoSubObj);
 
 	var easeInLogoSub = new Kinetic.Tween({
 		node: logoSubObj,
@@ -97,20 +99,11 @@ function initLogo() {
 		opacity: 0
 	});
 
-	stage.add(layer2);
+	stage.add(layer4);
 
 	easeInLogo.play();
 	easeInLogoSub.play();
 
-}
-
-function debugLogo() {
-
-	layer2.getChildren().each(function(shape) {
-		console.log(shape.getOpacity());
-		console.log(shape.getAbsoluteZIndex());
-		console.log(shape.isVisible());
-	});
 }
 
 // *** OBJECT CONSTRUCTOR *** //
@@ -162,8 +155,8 @@ function TX(jsonLoc, wsData) {
 			opacity: 1
 		});
 
-		layer1.add(rip);
-		stage.add(layer1);
+		layer2.add(rip);
+		stage.add(layer2);
 
 		var ripEffect = new Kinetic.Tween({
 			node: rip,
@@ -229,8 +222,8 @@ function TX(jsonLoc, wsData) {
 		yFix = 6;
 		sideLineObj.setOffset(xFix, yFix);
 
-		layer1.add(sideLineObj);
-		stage.add(layer1);
+		layer3.add(sideLineObj);
+		stage.add(layer3);
 
 		// Fade out sideLine object
 		var fadeOutObj = new Kinetic.Tween({
