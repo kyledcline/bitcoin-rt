@@ -1,6 +1,7 @@
 // *** GLOBAL VARIABLE DECLARATION *** //
 
 var wsURI = "wss://ws.blockchain.info/inv";
+var firstRun = true;
 var counterTX = 0;
 var zero, time, timeHr, timeMin, timeSec, cleanTime;
 var qInfoHidden = true;
@@ -27,6 +28,9 @@ function onOpen(evt) {
 
 	websocket.send('{"op":"unconfirmed_sub"}');
 	websocket.send('{"op":"blocks_sub"}');
+
+	if (firstRun) initLogo();
+	firstRun = false;
 }
 
 function onClose(evt) {

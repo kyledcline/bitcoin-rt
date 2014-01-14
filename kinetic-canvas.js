@@ -35,8 +35,8 @@ function initCanvas() {
 	}
 	imageObj.src = 'images/worldmap_bg.png';
 
-	var logo = new otherShape();
-	logo.logoDisplay();
+	// var logo = new otherShape();
+	// logo.logoDisplay();
 
 	initWebSocket();
 
@@ -47,26 +47,64 @@ function initLogo() {
 	var logoText = "Bitcoin-RT";
 	var subtitleText = "Watch bitcoin transactions relayed across the globe in realtime";
 
+	// All top logo code
 	var logoObj = new Kinetic.Text({
 		text: logoText,
 		x: 0,
-		y: 0,
+		y: mapScreenHeight / 2 - 72,
 		fill: 'white',
-		fontSize: 64,
-		fontFamily: 'Share Tech Mono',
+		fontSize: 72,
+		fontFamily: 'Changa One',
 		opacity: 1
 	});
-
 	layer2.add(logoObj);
+
+	var easeInLogo = new Kinetic.Tween({
+		node: logoObj,
+		duration: 1,
+		easing: Kinetic.Easings.BackEaseOut,
+		x: (mapScreenWidth / 2) - (logoObj.getWidth() / 2),
+		onFinish: function() { fadeLogo.play(); }
+	});
+
+	var fadeLogo = new Kinetic.Tween({
+		node: logoObj,
+		duration: 8,
+		opacity: 0
+	});
+
+	// All sublogo code
+	var logoSubObj = new Kinetic.Text({
+		text: subtitleText,
+		x: mapScreenWidth,
+		y: mapScreenHeight / 2,
+		fill: 'white',
+		fontSize: 24,
+		fontFamily: 'Changa One',
+		fontStyle: 'italic',
+		opacity: 1
+	});
+	layer2.add(logoSubObj);
+
+	var easeInLogoSub = new Kinetic.Tween({
+		node: logoSubObj,
+		duration: 1,
+		easing: Kinetic.Easings.BackEaseOut,
+		x: (mapScreenWidth / 2) - (logoSubObj.getWidth() / 2),
+		onFinish: function() { fadeLogoSub.play(); }
+	});
+
+	var fadeLogoSub = new Kinetic.Tween({
+		node: logoSubObj,
+		duration: 8,
+		opacity: 0
+	});
+
 	stage.add(layer2);
 
-	// var easeInLogo = new Kinetic.Tween({
-	// 	node: logoObj,
-	// 	duration: 3,
-	// 	x: stage.getWidth() / 2
-	// });
+	easeInLogo.play();
+	easeInLogoSub.play();
 
-	//easeInLogo.play();
 }
 
 function debugLogo() {
@@ -221,7 +259,7 @@ function otherShape() {
 			y: 0,
 			fill: 'white',
 			fontSize: 64,
-			fontFamily: 'Share Tech Mono',
+			fontFamily: 'Changa One',
 			opacity: 1
 		});
 
