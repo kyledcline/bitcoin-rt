@@ -1,5 +1,5 @@
 // *** GLOBAL VARIABLE DECLARATION *** //
-var stage, layer0, layer1;
+var stage, layer0, layer1, layer2;
 var mapGeoLeft   = -180.0000;
 var mapGeoRight  =  180.0000;
 var mapGeoTop    =   90.0000;
@@ -17,8 +17,9 @@ function initCanvas() {
 		height: mapScreenWidth
 	});
 
-	layer0 = new Kinetic.Layer();
-	layer1 = new Kinetic.Layer();
+	layer0 = new Kinetic.Layer(); // background
+	layer1 = new Kinetic.Layer(); // tx
+	layer2 = new Kinetic.Layer(); // logo
 
 	var imageObj = new Image();
 	imageObj.onload = function() {
@@ -34,11 +35,47 @@ function initCanvas() {
 	}
 	imageObj.src = 'images/worldmap_bg.png';
 
-	// initHeader();
+	var logo = new otherShape();
+	logo.logoDisplay();
 
 	initWebSocket();
 
 	// handleCharts();
+}
+
+function initLogo() {
+	var logoText = "Bitcoin-RT";
+	var subtitleText = "Watch bitcoin transactions relayed across the globe in realtime";
+
+	var logoObj = new Kinetic.Text({
+		text: logoText,
+		x: 0,
+		y: 0,
+		fill: 'white',
+		fontSize: 64,
+		fontFamily: 'Share Tech Mono',
+		opacity: 1
+	});
+
+	layer2.add(logoObj);
+	stage.add(layer2);
+
+	// var easeInLogo = new Kinetic.Tween({
+	// 	node: logoObj,
+	// 	duration: 3,
+	// 	x: stage.getWidth() / 2
+	// });
+
+	//easeInLogo.play();
+}
+
+function debugLogo() {
+
+	layer2.getChildren().each(function(shape) {
+		console.log(shape.getOpacity());
+		console.log(shape.getAbsoluteZIndex());
+		console.log(shape.isVisible());
+	});
 }
 
 // *** OBJECT CONSTRUCTOR *** //
@@ -169,5 +206,26 @@ function TX(jsonLoc, wsData) {
 		});
 
 		fadeOutObj.play();
+	}
+}
+
+function otherShape() {
+
+	this.logoDisplay = function() {
+		var logoText = "Bitcoin-RT";
+		var subtitleText = "Watch bitcoin transactions relayed across the globe in realtime";
+
+		var logoObj = new Kinetic.Text({
+			text: logoText,
+			x: 0,
+			y: 0,
+			fill: 'white',
+			fontSize: 64,
+			fontFamily: 'Share Tech Mono',
+			opacity: 1
+		});
+
+		layer2.add(logoObj);
+		stage.add(layer2);
 	}
 }
