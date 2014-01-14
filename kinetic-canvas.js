@@ -100,10 +100,59 @@ function initLogo() {
 	});
 
 	stage.add(layer4);
-
 	easeInLogo.play();
 	easeInLogoSub.play();
+}
 
+function animateNewBlock() {
+
+	var blockRect = new Kinetic.Rect({
+		x: 0,
+		y: 0,
+		width: mapScreenWidth,
+		height: mapScreenHeight,
+		fill: 'white',
+		stroke: 'white',
+		strokeWidth: 5,
+		opacity: 1
+	});
+	layer4.add(blockRect);
+
+	var implodeBlock = new Kinetic.Tween({
+		node: blockRect,
+		duration: 0.5,
+		x: 0,
+		y: mapScreenHeight,
+		width: 0,
+		height: 0,
+		opacity: 0,
+		easing: Kinetic.Easings.Linear,
+		onFinish: function() { blockRect.destroy(); }
+	});
+
+	var blockText = new Kinetic.Text({
+		x: mapScreenWidth / 2,
+		y: mapScreenHeight / 2,
+		text: 'New block found!',
+		fontSize: 24,
+		fontFamily: 'Changa One',
+		fill: 'white',
+		opacity: 1
+	});
+	blockText.setOffset(blockText.getWidth()/2, 0);
+	layer4.add(blockText);
+
+	var fadeBlockText = new Kinetic.Tween({
+		node: blockText,
+		opacity: 0,
+		duration: 2,
+		easing: Kinetic.Easings.EaseIn,
+		onFinish: function() { blockText.destroy(); }
+	});
+
+	stage.add(layer4);
+	implodeBlock.play();
+	fadeBlockText.play();
 }
 
 // *** OBJECT CONSTRUCTOR *** //

@@ -3,6 +3,7 @@
 var wsURI = "wss://ws.blockchain.info/inv";
 var firstRun = true;
 var counterTX = 0;
+var counterBlocks = 0;
 var zero, time, timeHr, timeMin, timeSec, cleanTime;
 var qInfoHidden = true;
 var donateQRHidden = true;
@@ -43,6 +44,7 @@ function onMessage(evt) {
 
 	// Call tx or block function based on response
 	if (wsData.op == "utx") handleOP(wsData);
+	if (wsData.op == "block") animateNewBlock();
 }
 
 function onError(evt) {
@@ -104,6 +106,11 @@ function updateExternalDisplays(tx) {
 	var txText = "TX Hash: <b>" + tx.hash.substring(0,15) + "</b><br />Relay IP: <b>" + tx.ipAddress + "</b><br />Location: <b>"
 		 + cleanStringLocation(tx) + "</b><br />Lat, Long: <b>" + tx.latitude + ", " + tx.longitude + "</b>";
 	document.getElementById('pageStatus').innerHTML = txText;
+}
+
+function updateExternalDisplayBlock() {
+	counterBlocks++;
+	document.getElementById('pageBlocks').innerHTML = counterBlocks;
 }
 
 function cleanStringLocation(tx) {
