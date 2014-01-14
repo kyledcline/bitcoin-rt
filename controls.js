@@ -44,7 +44,7 @@ function onMessage(evt) {
 
 	// Call tx or block function based on response
 	if (wsData.op == "utx") handleOP(wsData);
-	if (wsData.op == "block") animateNewBlock();
+	if (wsData.op == "block") handleBlock(wsData);
 }
 
 function onError(evt) {
@@ -66,7 +66,13 @@ function handleOP(wsData) {
 	// if (!jsonLoc.hasOwnProperty("locid_del")) doWhat?
 
 	// manageNewTX() will be called from jspgsql.js
+}
 
+function handleBlock(wsData) {
+	animateNewBlock();
+
+	counterBlocks++;
+	document.getElementById('pageBlocks').innerHTML = counterBlocks;
 }
 
 function manageNewTX(ajaxResp, wsData) {
@@ -106,11 +112,6 @@ function updateExternalDisplays(tx) {
 	var txText = "TX Hash: <b>" + tx.hash.substring(0,15) + "</b><br />Relay IP: <b>" + tx.ipAddress + "</b><br />Location: <b>"
 		 + cleanStringLocation(tx) + "</b><br />Lat, Long: <b>" + tx.latitude + ", " + tx.longitude + "</b>";
 	document.getElementById('pageStatus').innerHTML = txText;
-}
-
-function updateExternalDisplayBlock() {
-	counterBlocks++;
-	document.getElementById('pageBlocks').innerHTML = counterBlocks;
 }
 
 function cleanStringLocation(tx) {
