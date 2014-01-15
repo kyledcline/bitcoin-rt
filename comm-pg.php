@@ -1,21 +1,18 @@
 <?php
 
-$host = "ec2-184-73-177-15.compute-1.amazonaws.com";
-$user = "u6v8meri9ef421";
-$pass = "p8v5s7ep53mj3jmkt7qh9pt4o5";
-$db   = "d1im0og2qg9u0n";
+$host = $_ENV["DB_HOST"];
+$user = $_ENV["DB_USER"];
+$pass = $_ENV["DB_PASS"];
+$db   = $_ENV["DB_DB"];
 
 $con = pg_connect("host=$host port=5492 dbname=$db user=$user password=$pass sslmode=require") or die("Could not connect. Error: $php_errormsg");
 $json = "";
-
-#$rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
 
 if (isset($_GET['pgsql'])) {
 	$pg_query = rawurldecode($_GET['pgsql']);
 	$rs = pg_query($con, stripslashes($pg_query));
 	if ($rs != false and @pg_num_rows($rs) > 0) {
 		$pg_num_rows = pg_num_rows($rs);
-		#json .= "[";
 		for ($i = 0; $i < $pg_num_rows; $i++) {
 			$row = pg_fetch_assoc($rs);
 			$json = "{";
@@ -30,7 +27,6 @@ if (isset($_GET['pgsql'])) {
 				$json .= ", ";
 			}
 		}
-		#$json .= "]";	
 	}
 	echo ($json);
 }
