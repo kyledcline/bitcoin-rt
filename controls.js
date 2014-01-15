@@ -54,7 +54,8 @@ function onError(evt) {
 // *** TIER II FUNCTIONS *** //
 
 function handleOP(wsData) {
-	// Parse ipAdd into integer representation and query postgreSQL CDDB for location info
+	// Parse IP address into integer representation and query postgreSQL CDDB for location info
+	
 	var tempIPtoStrArray = wsData.x.relayed_by.split(".");
 	var tempIPtoIntArray = tempIPtoStrArray.map(function(x) { return parseInt(x, 10); });
 	var tempIntIpAdd = (16777216*tempIPtoIntArray[0])+(65536*tempIPtoIntArray[1])+(256*tempIPtoIntArray[2])+tempIPtoIntArray[3];
@@ -69,6 +70,8 @@ function handleOP(wsData) {
 }
 
 function handleBlock(wsData) {
+	// When new block is found, start animation and update user display
+
 	animateNewBlock();
 
 	counterBlocks++;
@@ -101,13 +104,11 @@ function toggleDivDisplay(el, elHidden) {
 }
 
 function updateExternalDisplays(tx) {
+	// Update TX-specific info in respective divs for user display
+
 	counterTX++;
 	document.getElementById('pageNumofTX').innerHTML = counterTX;
 	document.title = "Bitcoin-RT [" + counterTX + " tx]";
-
-	if (tx.continent == "NA") continentsData.NA++;
-	if (tx.continent == "EU") continentsData.EU++;
-	if (tx.continent == "AS") continentsData.AS++;
 
 	var txText = "TX Hash: <b>" + tx.hash.substring(0,15) + "</b><br />Relay IP: <b>" + tx.ipAddress + "</b><br />Location: <b>"
 		 + cleanStringLocation(tx) + "</b><br />Lat, Long: <b>" + tx.latitude + ", " + tx.longitude + "</b>";
@@ -143,44 +144,4 @@ function updateClock() {
 
 	cleanTime = timeHr + ":" + timeMin + ":" + timeSec;
 	document.getElementById('pageClock').innerHTML = cleanTime;
-
-	// handleCharts();
-}
-
-function handleCharts() {
-	var options = {
-			segmentStrokeColor: "rgba(0,0,0,0)",
-			animation: false
-		};
-	
-	var data = [
-		{
-			value: continentsData.NA,
-			color: "rgba(255,255,255,0.25)"
-		},
-		{
-			value: continentsData.SA,
-			color: "rgba(204,204,204,0.25)"
-		},
-		{
-			value: continentsData.EU,
-			color: "rgba(153,153,153,0.25)"
-		},
-		{
-			value: continentsData.AF,
-			color: "rgba(102,102,102,0.25)"
-		},
-		{
-			value: continentsData.AS,
-			color: "rgba(51,51,51,0.25)"
-		},
-		{
-			value: continentsData.OC,
-			color: "rgba(5,5,5,0.25)"
-		}
-	];
-	var chartCanvas = document.getElementById('continentsChart').getContext('2d');
-	var continentsChart = new Chart(chartCanvas).Pie(data, options);
-
-
 }
