@@ -38,8 +38,6 @@ function initCanvas() {
 	imageObj.src = 'images/worldmap_bg.png';
 
 	initWebSocket();
-
-	// handleCharts();
 }
 
 function initLogo() {
