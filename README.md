@@ -17,4 +17,4 @@ Libraries and APIs used:
 
 ==========
 
-Bitcoin-RT is deployed and viewable at (Bitcoin-RT.com)[http://bitcoin-rt.com].
+Bitcoin-RT is deployed and viewable at [Bitcoin-RT.com](http://bitcoin-rt.com).
