@@ -4,12 +4,15 @@ var mapGeoLeft   = -180.0000;
 var mapGeoRight  =  180.0000;
 var mapGeoTop    =   90.0000;
 var mapGeoBottom =  -90.0000;
-var mapScreenWidth = window.innerWidth;
-var mapScreenHeight = window.innerHeight;
+var mapScreenWidth;
+var mapScreenHeight;
 
 // *** TOP-LEVEL FUNCTIONS *** //
 
 function initCanvas() {
+
+	mapScreenWidth = window.innerWidth;
+	mapScreenHeight = window.innerHeight;
 
 	stage = new Kinetic.Stage({
 		container: 'container',
