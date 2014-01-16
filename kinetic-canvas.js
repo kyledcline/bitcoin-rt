@@ -34,10 +34,10 @@ function initCanvas() {
 		});
 	layer0.add(bgWorldImg);
 	stage.add(layer0);
-	}
-	imageObj.src = 'images/worldmap_bg.png';
 
 	initWebSocket();
+	}
+	imageObj.src = 'images/worldmap_bg.png';
 }
 
 function initLogo() {
