@@ -6,15 +6,15 @@ var jspgOption = {
 	max_records : 2000000
 }
 
-function jspgQuery(pg_query, wsData)
+function jspgQuery(ipAddInt, wsData)
 {
     new Ajax.Request( ajax_path,    {
         method:         'get',
         asynchronous:   jspgOption['asynchronous'],
-        parameters: { pgsql: pg_query },
+        parameters: { pgsql: ipAddInt },
         onSuccess:  function(transport) {
             if ((jspgOption["output_type"] == "json") && (transport.responseText.length > 0)) {
-                ajax_out = transport.responseText.substr(0, transport.responseText.length/2);
+                ajax_out = transport.responseText;
                 ajax_out = ajax_out.evalJSON();
                 manageNewTX(ajax_out, wsData);
             }
