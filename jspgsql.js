@@ -1,4 +1,4 @@
-var ajax_path = "comm-pg.php";
+var ajax_path = "comm.php";
 var ajax_out  = "";
 var jspgOption = {
 	output_type : "json",
