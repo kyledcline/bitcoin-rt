@@ -61,7 +61,7 @@ function handleOP(wsData) {
 	var tempIntIpAdd = (16777216*tempIPtoIntArray[0])+(65536*tempIPtoIntArray[1])+(256*tempIPtoIntArray[2])+tempIPtoIntArray[3];
 	jspgSetOption("output_type","json");
 	
-	jspgQuery("SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid::text = l.locid_del) WHERE " + tempIntIpAdd + " BETWEEN b.startip AND b.endip LIMIT 1;", wsData);
+	jspgQuery("SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid = l.locid) WHERE " + tempIntIpAdd + " BETWEEN b.startip AND b.endip LIMIT 1;", wsData);
 	
 	// Let other functions know if errors occur
 	// if (!jsonLoc.hasOwnProperty("locid_del")) doWhat?
