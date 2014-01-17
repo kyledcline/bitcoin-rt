@@ -15,7 +15,7 @@ function jspgQuery(ipAddInt, wsData)
         onSuccess:  function(transport) {
             if ((jspgOption["output_type"] == "json") && (transport.responseText.length > 0)) {
                 ajax_out = transport.responseText;
-                ajax_out = ajax_out.evalJSON();
+                // ajax_out = ajax_out.evalJSON();
                 manageNewTX(ajax_out, wsData);
             }
             else if (jspgOption["output_type"] == "text") {
