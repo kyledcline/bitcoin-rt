@@ -13,6 +13,7 @@ function jspgQuery(ipAddInt, wsData)
         asynchronous:   jspgOption['asynchronous'],
         parameters: { pgsql: ipAddInt },
         onSuccess:  function(transport) {
+            console.log(transport.responseText.length);
             if ((jspgOption["output_type"] == "json") && (transport.responseText.length > 0)) {
                 ajax_out = transport.responseText;
                 console.log('ajax_out:'+ajax_out);
