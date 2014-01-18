@@ -12,11 +12,11 @@ $json = "";
 if (isset($_GET['pgsql'])) {
 
 	$pg_query = $_GET['pgsql'];
-	echo ($pg_query);
+	echo gettype($pg_query);
 	$result = pg_prepare($conn, "loc_query", 'SELECT l.* FROM blocks b JOIN locations2 l ON (b.locid = l.locid) WHERE $1 BETWEEN b.startip AND b.endip LIMIT 1');
 	$result = pg_execute($conn, "loc_query", $pg_query);
 
-	echo ($result);
+	echo gettype($result);
 
 	#if ($result != false and @pg_num_rows($result) > 0) {
 		$row = pg_fetch_assoc($result);
