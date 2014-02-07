@@ -9,7 +9,7 @@ Donations and feedback appreciated.
 
 ==========
 
-<img src="https://s3.amazonaws.com/kdc-apps/Bitcoin-RT-25min.png" />
+<img src="https://s3.amazonaws.com/kdc-apps/Bitcoin-RT-blend.png" />
 ####Bitcoin-RT after ~25 minutes and 1000+ transactions
 
 ==========
