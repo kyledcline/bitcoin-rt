@@ -9,12 +9,12 @@ Donations and feedback appreciated.
 
 ==========
 
-<img src="https://s3.amazonaws.com/kdc-apps/Bitcoin-RT-blend.png" />
 ####Bitcoin-RT after ~25 minutes and 1000+ transactions
+<img src="https://s3.amazonaws.com/kdc-apps/Bitcoin-RT-blend.png" />
 
 ==========
 
-Libraries and APIs used: 
+####Libraries and APIs
 
 * [Blockchain.info WebSocket](https://blockchain.info/api/api_websocket)
 * [Kinetic.js](http://kineticjs.com/)
@@ -22,4 +22,4 @@ Libraries and APIs used:
 
 ==========
 
-Bitcoin-RT is deployed and viewable at [Bitcoin-RT.com](http://bitcoin-rt.com).
+#####Bitcoin-RT is deployed and viewable at [Bitcoin-RT.com](http://bitcoin-rt.com).
