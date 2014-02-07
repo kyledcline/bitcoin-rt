@@ -16,9 +16,9 @@ Donations and feedback appreciated.
 
 Libraries and APIs used: 
 
-* Blockchain.info WebSocket
-* Kinetic.js
-* Prototype.js
+* [Blockchain.info WebSocket](https://blockchain.info/api/api_websocket)
+* [Kinetic.js](http://kineticjs.com/)
+* [Prototype.js](http://prototypejs.org/)
 
 ==========
 
