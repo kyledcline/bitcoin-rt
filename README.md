@@ -9,6 +9,11 @@ Donations and feedback appreciated.
 
 ==========
 
+<img src="https://s3.amazonaws.com/kdc-apps/Bitcoin-RT-25min.png" />
+####Bitcoin-RT after ~25 minutes and 1000+ transactions
+
+==========
+
 Libraries and APIs used: 
 
 * Blockchain.info WebSocket
