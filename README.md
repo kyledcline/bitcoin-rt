@@ -1,4 +1,4 @@
-Bitcoin-RT
+[Bitcoin-RT](http://bitcoin-rt.com)
 ==========
 
 Bitcoin-RT plots realtime bitcoin transactions on a modified Mercator projection of the world. Geocoordinates are determined by the first established node to relay each transaction through the Bitcoin p2p network. All data is fetched from Blockchain.info's WebSocket API, a low latency streaming socket channel. Optimized for Google Chrome.
